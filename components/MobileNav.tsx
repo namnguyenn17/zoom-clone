@@ -47,7 +47,6 @@ const MobileNav = () => {
                     pathname === item.routes ||
                     pathname.startsWith(`${item.routes}/`);
 
-                  console.log('pathname', pathname, isActive);
                   return (
                     <SheetClose asChild key={item.routes}>
                       <Link

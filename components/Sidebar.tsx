@@ -16,7 +16,6 @@ const Sidebar = () => {
           const isActive =
             pathname === item.routes || pathname.startsWith(`${item.routes}/`);
 
-          console.log('pathname', pathname, isActive);
           return (
             <Link
               key={item.label}
