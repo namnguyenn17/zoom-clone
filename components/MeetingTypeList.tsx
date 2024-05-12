@@ -10,6 +10,7 @@ import MeetingModal from './MeetingModal';
 
 import { useToast } from '@/components/ui/use-toast';
 import ReactDatePicker from 'react-datepicker';
+import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 
 const MeetingTypeList = () => {
@@ -25,6 +26,7 @@ const MeetingTypeList = () => {
     description: '',
     link: ''
   });
+
   const [callDetail, setCallDetail] = useState<Call>();
 
   const createMeeting = async () => {
@@ -85,7 +87,7 @@ const MeetingTypeList = () => {
         img="/icons/recordings.svg"
         title="View Meeting"
         description="Check out your recordings"
-        handleClick={() => setMeetingState('isJoiningMeeting')}
+        handleClick={() => router.push('/recordings')}
         className="bg-purple-1"
       />
       <HomeCard
@@ -150,6 +152,21 @@ const MeetingTypeList = () => {
           buttonText="Copy Meeting Link"
         />
       )}
+      <MeetingModal
+        isOpen={meetingState === 'isJoiningMeeting'}
+        onClose={() => setMeetingState(undefined)}
+        title="Type the link here"
+        className="text-center"
+        buttonText="Join Meeting"
+        handleClick={() => router.push(values.link)}
+      >
+        <Input
+          placeholder="Meeting link"
+          onChange={(e) => setValues({ ...values, link: e.target.value })}
+          className="border-none bg-dark-3 focus-visible:ring-0 focus-visible:ring-offset-0"
+        />
+      </MeetingModal>
+
       <MeetingModal
         isOpen={meetingState === 'isInstantMeeting'}
         onClose={() => setMeetingState(undefined)}
